@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\InternshipController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Coordinator\CoordinatorController;
@@ -20,6 +21,8 @@ use App\Http\Controllers\Coordinator\CoordinatorController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('internships', InternshipController::class);
 
 Auth::routes();
 
@@ -42,6 +45,7 @@ Route::prefix('user')->name('user.')->group(function(){
 
 Route::prefix('admin')->name('admin.')->group(function(){
        
+
     Route::middleware(['guest:admin','PreventBackHistory'])->group(function(){
           Route::view('/login','dashboard.admin.login')->name('login');
           Route::post('/check',[AdminController::class,'check'])->name('check');
