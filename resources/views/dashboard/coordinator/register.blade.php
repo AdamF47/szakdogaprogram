@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Coordinator Register</title>
-    <link rel="stylesheet" href="{{ asset('bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 offset-md-4" style="margin-top: 45px">
+<body style="background-color:slateblue !important">
+    <div class="flex justify-center">       
+            <div class="w-4/12 bg-white p-6 rounded-lg">
                  <h4>Coordinator Register</h4><hr>
                  <form action="{{ route('coordinator.create') }}" method="post">
                     @if (Session::get('success'))
@@ -25,34 +24,33 @@
                     @endif
 
                     @csrf
-                     <div class="form-group">
+                     <div class="mb-4">
                          <label for="name">Name</label>
-                         <input type="text" class="form-control" name="name" placeholder="Enter full name" value="{{ old('name') }}">
+                         <input type="text" class="bg-gray-100 border-2 w-full p-4 rounded-lg" name="name" placeholder="Enter full name" value="{{ old('name') }}">
                          <span class="text-danger">@error('name'){{ $message }}@enderror</span>
                      </div>
-                     <div class="form-group">
+                     <div class="mb-4">
                         <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Enter email address" value="{{ old('email') }}">
+                        <input type="text" class="bg-gray-100 border-2 w-full p-4 rounded-lg" name="email" placeholder="Enter email address" value="{{ old('email') }}">
                         <span class="text-danger">@error('email'){{ $message }}@enderror</span>
                     </div>
-                     <div class="form-group">
+                     <div class="mb-4">
                          <label for="password">Password</label>
-                         <input type="password" class="form-control" name="password" placeholder="Enter password" value="{{ old('password') }}">
+                         <input type="password" class="bg-gray-100 border-2 w-full p-4 rounded-lg" name="password" placeholder="Enter password" value="{{ old('password') }}">
                          <span class="text-danger">@error('password'){{ $message }}@enderror</span>
                      </div>
-                     <div class="form-group">
+                     <div class="mb-4">
                         <label for="cpassword">Confirm Password</label>
-                        <input type="password" class="form-control" name="cpassword" placeholder="Enter confirm password" value="{{ old('cpassword') }}">
+                        <input type="password" class="bg-gray-100 border-2 w-full p-4 rounded-lg" name="cpassword" placeholder="Enter confirm password" value="{{ old('cpassword') }}">
                         <span class="text-danger">@error('cpassword'){{ $message }}@enderror</span>
                     </div>
-                     <div class="form-group">
-                         <button type="submit" class="btn btn-primary">Register</button>
+                     <div class="mb-4">
+                         <button type="submit" class="bg-blue-500 text-white px-4 py-3 rounded font-medium w-full">Register</button>
                      </div>
                      <br>
-                     <a href="{{ route('coordinator.login') }}">I already have an account, Login now</a>
+                     <a class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7" href="{{ route('coordinator.login') }}">I already have an account, Login now</a>
                  </form>
             </div>
-        </div>
     </div>
 </body>
 </html>
