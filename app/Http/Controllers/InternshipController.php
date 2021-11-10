@@ -45,7 +45,7 @@ class InternshipController extends Controller
     
         Internship::create($request->all());
      
-        return redirect()->route('internships.index')
+        return redirect()->route('admin.internships.index')
                         ->with('success','Internship created successfully.');
     }
 
@@ -87,7 +87,7 @@ class InternshipController extends Controller
     
         $internship->update($request->all());
      
-        return redirect()->route('internships.index')
+        return redirect()->route('admin.internships.index')
                         ->with('success','Internship updated successfully.');
     }
 
@@ -101,7 +101,7 @@ class InternshipController extends Controller
     {
         $internship->delete();
      
-        return redirect()->route('internships.index')
+        return redirect()->route('admin.internships.index')
                         ->with('success','Internship deleted successfully.');
     }
 }

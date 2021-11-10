@@ -7,7 +7,7 @@
                 <h2> Show Internships</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('internships.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('admin.internships.index') }}"> Back</a>
             </div>
         </div>
     </div>

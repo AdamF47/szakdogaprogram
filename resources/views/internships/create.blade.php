@@ -7,7 +7,7 @@
             <h2>Add New Internship</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('internships.index') }}"> Back</a>
+            <a class="btn btn-primary" href="{{ route('admin.internships.index') }}"> Back</a>
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
     </div>
 @endif
    
-<form action="{{ route('internships.store') }}" method="POST">
+<form action="{{ route('admin.internships.store') }}" method="POST">
     @csrf
   
      <div class="row">

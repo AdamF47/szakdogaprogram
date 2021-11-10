@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('internships', InternshipController::class);
+
 
 Auth::routes();
 
@@ -54,6 +54,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
         Route::view('/home','dashboard.admin.home')->name('home');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
+        Route::resource('internships', InternshipController::class);
     });
 
 });

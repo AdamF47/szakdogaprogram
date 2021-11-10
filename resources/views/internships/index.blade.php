@@ -7,7 +7,7 @@
                 <h2>Internship Manager Page</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('internships.create') }}"> Create New Internship</a>
+                <a class="btn btn-success" href="{{ route('admin.internships.create') }}"> Create New Internship</a>
             </div>
         </div>
     </div>
@@ -31,11 +31,11 @@
             <td>{{ $internship->name }}</td>
             <td>{{ $internship->description }}</td>
             <td>
-                <form action="{{ route('internships.destroy',$internship->id) }}" method="POST">
+                <form action="{{ route('admin.internships.destroy',$internship->id) }}" method="POST">
    
-                    <a class="btn btn-info" href="{{ route('internships.show',$internship->id) }}">Show</a>
+                    <a class="btn btn-info" href="{{ route('admin.internships.show',$internship->id) }}">Show</a>
     
-                    <a class="btn btn-primary" href="{{ route('internships.edit',$internship->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('admin.internships.edit',$internship->id) }}">Edit</a>
    
                     @csrf
                     @method('DELETE')
