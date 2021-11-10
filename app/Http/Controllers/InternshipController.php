@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Internship;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class InternshipController extends Controller
 {
@@ -45,8 +46,18 @@ class InternshipController extends Controller
     
         Internship::create($request->all());
      
-        return redirect()->route('admin.internships.index')
-                        ->with('success','Internship created successfully.');
+        if(Auth::guard('admin')->user() == true)
+        {
+            return redirect()->route('admin.internships.index')
+            ->with('success','Internship created successfully.');
+
+        }
+        elseif(Auth::guard('coordinator')->user() == true)
+        {
+            return redirect()->route('coordinator.internships.index')
+            ->with('success','Internship created successfully.');
+        }
+
     }
 
     /**
@@ -67,7 +78,7 @@ class InternshipController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Internship $internship)
-    {
+    {       
         return view('internships.edit',compact('internship'));
     }
 
@@ -87,8 +98,18 @@ class InternshipController extends Controller
     
         $internship->update($request->all());
      
-        return redirect()->route('admin.internships.index')
-                        ->with('success','Internship updated successfully.');
+        if(Auth::guard('admin')->user() == true)
+        {
+            return redirect()->route('admin.internships.index')
+            ->with('success','Internship updated successfully.');
+
+        }
+        elseif(Auth::guard('coordinator')->user() == true)
+        {
+            return redirect()->route('coordinator.internships.index')
+            ->with('success','Internship updated successfully.');
+        }
+
     }
 
     /**
@@ -101,7 +122,17 @@ class InternshipController extends Controller
     {
         $internship->delete();
      
-        return redirect()->route('admin.internships.index')
-                        ->with('success','Internship deleted successfully.');
+        if(Auth::guard('admin')->user() == true)
+        {
+            return redirect()->route('admin.internships.index')
+            ->with('success','Internship deleted successfully.');
+
+        }
+        elseif(Auth::guard('coordinator')->user() == true)
+        {
+            return redirect()->route('coordinator.internships.index')
+            ->with('success','Internship deleted successfully.');
+        }
+
     }
 }

@@ -7,11 +7,21 @@
                 <h2>Internship Manager Page</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('admin.internships.create') }}"> Create New Internship</a>
+                @if (Auth::guard('admin')->user() == true)
+                    <a class="btn btn-success" href="{{ route('admin.internships.create') }}"> Create New Internship</a>
+                    @php
+                        $var = 'admin'
+                    @endphp
+                @elseif (Auth::guard('coordinator')->user() == true)
+                    <a class="btn btn-success" href="{{ route('coordinator.internships.create') }}"> Create New Internship</a>
+                    @php
+                        $var = 'coordinator'
+                    @endphp
+                @endif            
             </div>
         </div>
     </div>
-   
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -31,6 +41,7 @@
             <td>{{ $internship->name }}</td>
             <td>{{ $internship->description }}</td>
             <td>
+                @if (Auth::guard('admin')->user() == true)
                 <form action="{{ route('admin.internships.destroy',$internship->id) }}" method="POST">
    
                     <a class="btn btn-info" href="{{ route('admin.internships.show',$internship->id) }}">Show</a>
@@ -42,6 +53,19 @@
       
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
+                @elseif ($var == 'coordinator')
+                    <form action="{{ route('coordinator.internships.destroy',$internship->id) }}" method="POST">
+   
+                        <a class="btn btn-info" href="{{ route('coordinator.internships.show',$internship->id) }}">Show</a>
+    
+                        <a class="btn btn-primary" href="{{ route('coordinator.internships.edit',$internship->id) }}">Edit</a>
+   
+                        @csrf
+                        @method('DELETE')
+      
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                @endif               
             </td>
         </tr>
         @endforeach

@@ -7,7 +7,12 @@
                 <h2> Show Internships</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('admin.internships.index') }}"> Back</a>
+                @if (Auth::guard('admin')->user() == true)
+                    <a class="btn btn-primary" href="{{ route('admin.internships.index') }}"> Back</a>             
+                @elseif (Auth::guard('coordinator')->user() == true)
+                    <a class="btn btn-primary" href="{{ route('coordinator.internships.index') }}"> Back</a>    
+                @endif               
+                
             </div>
         </div>
     </div>

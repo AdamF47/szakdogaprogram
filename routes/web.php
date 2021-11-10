@@ -87,6 +87,7 @@ Route::prefix('coordinator')->name('coordinator.')->group(function(){
     Route::middleware(['auth:coordinator','PreventBackHistory'])->group(function(){
          Route::view('/home','dashboard.coordinator.home')->name('home');
          Route::post('logout',[CoordinatorController::class,'logout'])->name('logout');
+         Route::resource('internships', InternshipController::class);
     });
 
 });
